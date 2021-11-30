@@ -1,11 +1,14 @@
+package exercises;
+
+import datastructures.Heap;
 import java.util.Scanner;
 
 class KeepTrackMedianRandomNumbers {
 
   public static void main(String[] args) {
     
-    MinHeap minHeap = new MinHeap();
-    MaxHeap maxHeap = new MaxHeap();
+    Heap minHeap = Heap.minHeap();
+    Heap maxHeap = Heap.maxHeap();
    
     Scanner input = new Scanner( System.in );
     while (true) {

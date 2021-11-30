@@ -1,18 +1,6 @@
+package datastructures;
+
 import java.util.Arrays;
-
-public class MaxHeap extends Heap {
-  @Override
-  protected boolean checkItems(int indexA, int indexB) {
-    return items[indexA] > items[indexB];
-  }
-}
-
-public class MinHeap extends Heap {
-  @Override
-  protected boolean checkItems(int indexA, int indexB) {
-    return items[indexA] < items[indexB];
-  }
-}
 
 public abstract class Heap {
   private final int INITIAL_CAPACITY = 2;
@@ -106,11 +94,32 @@ public abstract class Heap {
     }    
   }
 
+  public static Heap minHeap() {
+    return new MinHeap();
+  }
+
+  public static Heap maxHeap() {
+    return new MaxHeap();
+  }
+
+  private static class MaxHeap extends Heap {
+    @Override
+    protected boolean checkItems(int indexA, int indexB) {
+      return items[indexA] > items[indexB];
+    }
+  }
+
+  private static class MinHeap extends Heap {
+    @Override
+    protected boolean checkItems(int indexA, int indexB) {
+      return items[indexA] < items[indexB];
+    }
+  }
 }
 
 class HeapMain {
   private static void minheap() {
-    MinHeap mh = new MinHeap();
+    Heap mh = Heap.minHeap();
     mh.add(20);
     mh.add(25);
     mh.add(30);
@@ -127,7 +136,7 @@ class HeapMain {
   }
 
   private static void maxheap() {
-    MaxHeap mh = new MaxHeap();
+    Heap mh = Heap.maxHeap();
     mh.add(20);
     mh.add(25);
     mh.add(30);
