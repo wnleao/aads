@@ -3,7 +3,7 @@ package exercises;
 import datastructures.Heap;
 import java.util.Scanner;
 
-class KeepTrackMedianRandomNumbers {
+public class KeepTrackMedianRandomNumbers {
 
   public static void main(String[] args) {
     
