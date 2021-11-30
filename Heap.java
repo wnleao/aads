@@ -1,63 +1,20 @@
 import java.util.Arrays;
 
-class HeapMain {
-  private static void minheap() {
-    MinHeap mh = new MinHeap();
-    mh.add(20);
-    mh.add(25);
-    mh.add(30);
-    mh.add(35);
-    mh.add(12);
-    mh.add(1);
-    mh.add(9);
-    System.out.println(mh);
-    while (mh.size() > 0) {
-      int item = mh.poll();
-      System.out.println(item);
-      System.out.println(mh);
-    }    
-  }
-
-  private static void maxheap() {
-    MaxHeap mh = new MaxHeap();
-    mh.add(20);
-    mh.add(25);
-    mh.add(30);
-    mh.add(35);
-    mh.add(12);
-    mh.add(1);
-    mh.add(9);
-    System.out.println(mh);
-    while (mh.size() > 0) {
-      int item = mh.poll();
-      System.out.println(item);
-      System.out.println(mh);
-    }    
-  }
-
-  public static void main(String[] args) {
-    System.out.println("MinHeap");
-    minheap();  
-    System.out.println("MaxHeap");
-    maxheap();  
-  }
-}
-
-class MaxHeap extends Heap {
+public class MaxHeap extends Heap {
   @Override
   protected boolean checkItems(int indexA, int indexB) {
     return items[indexA] > items[indexB];
   }
 }
 
-class MinHeap extends Heap {
+public class MinHeap extends Heap {
   @Override
   protected boolean checkItems(int indexA, int indexB) {
     return items[indexA] < items[indexB];
   }
 }
 
-abstract class Heap {
+public abstract class Heap {
   private final int INITIAL_CAPACITY = 2;
   int size = 0;
   int[] items = new int[INITIAL_CAPACITY];
@@ -149,4 +106,47 @@ abstract class Heap {
     }    
   }
 
+}
+
+class HeapMain {
+  private static void minheap() {
+    MinHeap mh = new MinHeap();
+    mh.add(20);
+    mh.add(25);
+    mh.add(30);
+    mh.add(35);
+    mh.add(12);
+    mh.add(1);
+    mh.add(9);
+    System.out.println(mh);
+    while (mh.size() > 0) {
+      int item = mh.poll();
+      System.out.println(item);
+      System.out.println(mh);
+    }    
+  }
+
+  private static void maxheap() {
+    MaxHeap mh = new MaxHeap();
+    mh.add(20);
+    mh.add(25);
+    mh.add(30);
+    mh.add(35);
+    mh.add(12);
+    mh.add(1);
+    mh.add(9);
+    System.out.println(mh);
+    while (mh.size() > 0) {
+      int item = mh.poll();
+      System.out.println(item);
+      System.out.println(mh);
+    }    
+  }
+
+  public static void main(String[] args) {
+    System.out.println("MinHeap");
+    minheap();  
+    System.out.println("MaxHeap");
+    maxheap();  
+  }
 }

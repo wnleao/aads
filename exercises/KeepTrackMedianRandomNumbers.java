@@ -9,7 +9,7 @@ class KeepTrackMedianRandomNumbers {
    
     Scanner input = new Scanner( System.in );
     while (true) {
-      if(!(minHeap.isEmpty() && maxHeap.isEmpty())) {
+      if (!minHeap.isEmpty() || !maxHeap.isEmpty()) {
         System.out.println("min = " + minHeap);
         System.out.println("max = " + maxHeap); 
         double median;
@@ -20,6 +20,7 @@ class KeepTrackMedianRandomNumbers {
         }
         System.out.println("Current median: " + median);  
       }
+
       System.out.print("Enter a number: ");
       int value = input.nextInt();
       
@@ -30,19 +31,15 @@ class KeepTrackMedianRandomNumbers {
 
       if (value > minHeap.peek()) {
         minHeap.add(value);
-        // rebalance if necessary ...
-        if(minHeap.size() == maxHeap.size() + 2) {
+        if (minHeap.size() == maxHeap.size() + 2) {
           maxHeap.add(minHeap.poll());
         }
-        continue;
-      }
-
-      maxHeap.add(value);
-      if (maxHeap.size() == minHeap.size() + 2) {
-        minHeap.add(maxHeap.poll());
+      } else {
+        maxHeap.add(value);
+        if (maxHeap.size() == minHeap.size() + 2) {
+          minHeap.add(maxHeap.poll());
+        }
       }
     }
-
   }
-
 }
