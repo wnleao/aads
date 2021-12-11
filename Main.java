@@ -1,7 +1,7 @@
-import exercises.chapter01.*;
+import exercises.chapter02.*;
 
 class Main {
   public static void main(String[] args) {
-    Ex09Rotation.main(args);
+    Ex04Partition.main(args);
   }
 }

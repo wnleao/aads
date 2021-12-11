@@ -1,6 +1,7 @@
 package datastructures;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public abstract class Heap {
   private final int INITIAL_CAPACITY = 2;
@@ -24,7 +25,7 @@ public abstract class Heap {
   private boolean hasRight(int index) { return rightIndex(index) < size; }
 
   public int peek() {
-    if (size==0) { throw new IllegalArgumentException(); }
+    if (size==0) { throw new NoSuchElementException(); }
     return items[0];
   }
 
@@ -32,14 +33,14 @@ public abstract class Heap {
     ensureCapacity();
     items[size] = item;
     size++;
-    heapifyUp();
+    siftUp();
   }
 
   public int poll() {
-    if (size==0) { throw new IllegalArgumentException(); }
+    if (size==0) { throw new NoSuchElementException(); }
     int item = items[0];
     size--;
-    heapifyDown();
+    siftDown();
     return item;
   }
 
@@ -57,7 +58,7 @@ public abstract class Heap {
 
   protected abstract boolean checkItems(int indexA, int indexB);
     
-  private void heapifyUp() {
+  private void siftUp() {
     int index = size-1;
     while(hasParent(index) && checkItems(index, parentIndex(index))) {
       swap(items, parentIndex(index), index);
@@ -65,11 +66,11 @@ public abstract class Heap {
     }
   }
 
-  private void heapifyDown() {
+  private void siftDown() {
     if (size == 0) { return; }
     int index = 0;
     items[index] = items[size];
-    while(hasLeft(index)) {
+    while (hasLeft(index)) {
       int currIndex = leftIndex(index);
       if (hasRight(index) && checkItems(rightIndex(index), currIndex)) {
         currIndex = rightIndex(index);
