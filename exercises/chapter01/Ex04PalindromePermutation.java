@@ -8,10 +8,11 @@ import java.util.HashMap;
 public class Ex04PalindromePermutation {
 
   private static boolean checkPalindromeA(String string) {
-    String stringClean = string.replaceAll(" ", "");
     Map<Character, Integer> freqMap = new HashMap<>();
-    for(char c : stringClean.toCharArray()) {
-      freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+    for(char c : string.toLowerCase().toCharArray()) {
+      if (c != ' ') {
+        freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);  
+      }
     }
     // Only one letter should occur an odd number of times
     int oddLetterCounter = 0;
@@ -27,12 +28,15 @@ public class Ex04PalindromePermutation {
   }
 
   private static boolean checkPalindromeB(String string) {
-    char[] chars = string.replaceAll(" ", "").toCharArray();
+    char[] chars = string.toLowerCase().toCharArray();
     Arrays.sort(chars);
     char oldChar = '\0';
     int oddCounter = 0;
     boolean even = true;
     for (char c : chars) {
+      if (c == ' ') {
+        continue;
+      }
       if (oldChar == c) {
         even = !even;    
       } else {
@@ -52,7 +56,7 @@ public class Ex04PalindromePermutation {
   private static boolean checkPalindromeC(String string) {
     Map<Character, Integer> freqMap = new HashMap<>();
     int oddCounter = 0;
-    for(char c : string.toCharArray()) {
+    for(char c : string.toLowerCase().toCharArray()) {
       if (c == ' ') {
         continue;
       }
@@ -69,7 +73,7 @@ public class Ex04PalindromePermutation {
 
   private static boolean checkPalindromeD(String string) {
     int bitVector = 0;
-    for(char c : string.toCharArray()) {
+    for(char c : string.toLowerCase().toCharArray()) {
       if (c > 'z' || c < 'a') {
         continue;
       }
