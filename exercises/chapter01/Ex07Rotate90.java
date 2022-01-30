@@ -3,17 +3,21 @@ package exercises.chapter01;
 public class Ex07Rotate90 {
 
   private static void rotate90(int[][] matrix) {
-    if (matrix.length == 0 || matrix.length != matrix[0].length) {
+    int N = matrix.length;
+    if (N == 0 || N != matrix[0].length) {
       return;
-    }
-    for (int i = 0; i < matrix.length - 1; i++) {
-      int[] row = matrix[i];
-      for (int j = i+1; j < row.length; j++) {
-        int tmp = row[j];
-        row[j] = matrix[j][i];
-        matrix[j][i] = tmp;
+    }    
+    for (int i = 0; i < N-1; i++) {
+      for (int j = i+1; j < N; j++) {
+        swap(matrix, i, j);
       }
     }
+  }
+
+  private static void swap(int[][] matrix, int r, int c) {
+    int tmp = matrix[r][c];
+    matrix[r][c] = matrix[c][r];
+    matrix[c][r] = tmp;
   }
 
   private static void dump(int[][] matrix) {
