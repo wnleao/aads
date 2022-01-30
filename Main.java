@@ -1,7 +1,7 @@
-import exercises.chapter02.*;
+import exercises.chapter01.*;
 
 class Main {
   public static void main(String[] args) {
-    Ex04Partition.main(args);
+    Ex03URLify.main(args);
   }
 }

@@ -18,6 +18,7 @@ public class Ex01UniqueCharacters {
   }
 
   public static void main(String[] args) {
+    System.out.println("Chapter01 Ex01");
     try (Scanner input = new Scanner(System.in)) {
       while(true) {
         System.out.print("Enter a word (q to quit): ");
