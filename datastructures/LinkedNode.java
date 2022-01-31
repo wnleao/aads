@@ -36,6 +36,15 @@ public class LinkedNode {
     return next;
   }
 
+  public void insert(LinkedNode node) {
+    node.setNext(next);
+    next = node;
+  }
+
+  public void insert(int value) {
+    insert(new LinkedNode(value));
+  }
+
   public void add(int value) {
     LinkedNode newNode = new LinkedNode(value);
     LinkedNode curr = this;

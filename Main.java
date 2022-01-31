@@ -1,7 +1,7 @@
-import exercises.chapter01.*;
+import exercises.chapter02.RunnerTechnique;
 
 class Main {
   public static void main(String[] args) {
-    Ex07Rotate90.main(args);
+     RunnerTechnique.main(args);
   }
 }
