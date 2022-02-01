@@ -11,20 +11,16 @@ public class Ex02KthToLast {
     if (head == null || k < 0) {
       return null;
     }
-    LinkedNode n1 = head;
-    while (k >= 0) {
-      if (n1 == null) {
-        return null;
+    LinkedNode result = head;
+    int i = -1;
+    for (LinkedNode r = head; r != null; r = r.getNext()) {
+      if (i != k) {
+        i++;
+        continue;
       }
-      n1 = n1.getNext();
-      k--;
+      result = result.getNext();      
     }
-    LinkedNode n2 = head;
-    while (n1 != null) {
-      n1 = n1.getNext();
-      n2 = n2.getNext();
-    }
-    return n2;
+    return i == k ? result : null;
   }
 
   private static class NodeTarget {
