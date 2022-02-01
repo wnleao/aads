@@ -12,7 +12,7 @@ public class Ex02KthToLast {
       return null;
     }
     LinkedNode n1 = head;
-    while (k > 0) {
+    while (k >= 0) {
       if (n1 == null) {
         return null;
       }
@@ -28,7 +28,7 @@ public class Ex02KthToLast {
   }
 
   private static class NodeTarget {
-    public int index;
+    public int index = -1;
   }
 
   private static LinkedNode findKthRec(LinkedNode curr, int k, NodeTarget target) {
@@ -36,8 +36,7 @@ public class Ex02KthToLast {
       return null;
     }
     LinkedNode n = findKthRec(curr.getNext(), k, target);
-    target.index++;
-    if (target.index == k) {
+    if (++target.index == k) {
       return curr;
     }
     return n;
@@ -59,40 +58,77 @@ public class Ex02KthToLast {
       buffer.put(counter++, curr);
       curr = curr.getNext();
     }
-    return buffer.get(buffer.size() - k);    
+    return buffer.get(buffer.size() - 1 - k);    
   }
+
+  private static LinkedNode findKthToLastD(LinkedNode head, int k) {
+    if (head == null || k < 0) {
+      return null;
+    }
+    int target = - k - 1;
+    for (LinkedNode tmp = head; tmp != null; tmp = tmp.getNext(), target++);
+    if (target < 0) {
+      return null;
+    }
+    LinkedNode result = head;
+    for (; target > 0; result = result.getNext(), target--);
+    return result;
+  }
+
 
   public static void main(String[] args) {
     LinkedNode head = new LinkedNode(1, 2, 3, 4, 5, 6, 7);
 
-    System.out.println("A");
-    LinkedNode kth = findKthToLastA(head, 1);
+    System.out.println("$ A");
+    LinkedNode kth = findKthToLastA(head, 0);
+    System.out.println(kth.getValue());
+
+    kth = findKthToLastA(head, 1);
     System.out.println(kth.getValue());
 
     kth = findKthToLastA(head, 6);
     System.out.println(kth.getValue());
 
-    kth = findKthToLastA(head, 8);
+    kth = findKthToLastA(head, 7);
     System.out.println(kth);
 
-    System.out.println("B");
+    System.out.println("$ B");
+    kth = findKthToLastB(head, 0);
+    System.out.println(kth.getValue());
+
     kth = findKthToLastB(head, 1);
     System.out.println(kth.getValue());
 
     kth = findKthToLastB(head, 6);
     System.out.println(kth.getValue());
 
-    kth = findKthToLastB(head, 8);
+    kth = findKthToLastB(head, 7);
     System.out.println(kth);
 
-    System.out.println("C");
+    System.out.println("$ C");
+    kth = findKthToLastC(head, 0);
+    System.out.println(kth.getValue());
+
     kth = findKthToLastC(head, 1);
     System.out.println(kth.getValue());
 
     kth = findKthToLastC(head, 6);
     System.out.println(kth.getValue());
 
-    kth = findKthToLastC(head, 8);
+    kth = findKthToLastC(head, 7);
+    System.out.println(kth);
+
+    System.out.println("$ D");
+    kth = findKthToLastD(head, 0);
+    System.out.println(kth.getValue());
+
+    kth = findKthToLastD(head, 1);
+    System.out.println(kth.getValue());
+
+    kth = findKthToLastD(head, 6);
+    System.out.println(kth.getValue());
+
+    kth = findKthToLastD(head, 7);
     System.out.println(kth);
   }
   

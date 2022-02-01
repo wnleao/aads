@@ -1,7 +1,7 @@
-import exercises.chapter02.Ex01RemoveDup;
+import exercises.chapter02.*;
 
 class Main {
   public static void main(String[] args) {
-     Ex01RemoveDup.main(args);
+     Ex02KthToLast.main(args);
   }
 }
