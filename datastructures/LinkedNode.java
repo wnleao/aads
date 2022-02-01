@@ -36,13 +36,13 @@ public class LinkedNode {
     return next;
   }
 
-  public void insert(LinkedNode node) {
+  public LinkedNode insert(LinkedNode node) {
     node.setNext(next);
-    next = node;
+    return next = node;
   }
 
-  public void insert(int value) {
-    insert(new LinkedNode(value));
+  public LinkedNode insert(int value) {
+    return insert(new LinkedNode(value));
   }
 
   public void add(int value) {

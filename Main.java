@@ -1,7 +1,7 @@
-import exercises.chapter02.RunnerTechnique;
+import exercises.chapter02.Ex01RemoveDup;
 
 class Main {
   public static void main(String[] args) {
-     RunnerTechnique.main(args);
+     Ex01RemoveDup.main(args);
   }
 }

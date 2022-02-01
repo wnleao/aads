@@ -43,7 +43,6 @@ public class RunnerTechnique {
     list = new LinkedNode(1,3,5,7,2,4,6); 
     System.out.println("original = " + list);
     System.out.println("result   = " + interweave(list));
-
   }
 
 }

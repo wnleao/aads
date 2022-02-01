@@ -5,9 +5,9 @@ import datastructures.LinkedNode;
 import java.util.Set;
 import java.util.HashSet;
 
-public class Ex01DeleteDup {
+public class Ex01RemoveDup {
 
-  public static void deleteDupsA(LinkedNode head) {
+  public static void removeDupsA(LinkedNode head) {
     if (head.getNext() == null) {
       return;
     }
@@ -27,7 +27,7 @@ public class Ex01DeleteDup {
     }
   }
 
-  public static void deleteDupsB(LinkedNode head) {
+  public static void removeDupsB(LinkedNode head) {
     if (head.getNext() == null) {
       return;
     }
@@ -47,7 +47,24 @@ public class Ex01DeleteDup {
     }
   }
 
-  public static void deleteDupsC(LinkedList list) {
+  public static LinkedNode removeDupsC(LinkedNode head) {
+    if (head == null) {
+      return null;
+    }
+    LinkedNode result = new LinkedNode(head.getValue());
+    LinkedNode last = result;
+    LinkedNode source = head;
+    while ((source = source.getNext()) != null) {
+      LinkedNode tmp = result;
+      while (tmp.getValue() != source.getValue() && (tmp = tmp.getNext()) != null);
+      if (tmp == null) {
+        last = last.insert(source.getValue());        
+      } 
+    }
+    return result;
+  }
+
+  public static void removeDupsD(LinkedList list) {
     if (list.isEmpty()) {
       return;
     }
@@ -60,7 +77,7 @@ public class Ex01DeleteDup {
     } while(list.peek() != firstValue);    
   }
 
-  public static LinkedList deleteDupsD(LinkedList list) {
+  public static LinkedList removeDupsE(LinkedList list) {
     LinkedList result = new LinkedList() {
       @Override
       public void add(int value) {
@@ -98,20 +115,25 @@ public class Ex01DeleteDup {
   }
 
   public static void main(String[] args) {
-    LinkedNode head = createLinkedNode();
-    System.out.println(head);
-    deleteDupsA(head);
-    System.out.println(head);
+    LinkedNode head = new LinkedNode(1, 1, 2, 2, 2, 1, 1);
+    System.out.println("original = " + head);
+    System.out.println("result   = " + removeDupsC(head));
 
-    head = createLinkedNode();
-    System.out.println(head);
-    deleteDupsB(head);
-    System.out.println(head);
+    head = new LinkedNode(1, 1, 1, 1, 1, 1, 1);
+    System.out.println("original = " + head);
+    System.out.println("result   = " + removeDupsC(head));
 
-    LinkedList list = createLinkedList();
-    System.out.println(list);
-    deleteDupsC(list);
-    System.out.println(list);
+    head = new LinkedNode(1, 2, 1, 2, 1, 2, 1, 3);
+    System.out.println("original = " + head);
+    System.out.println("result   = " + removeDupsC(head));
+
+    head = new LinkedNode(1, 2, 3, 4, 5, 6, 7);
+    System.out.println("original = " + head);
+    System.out.println("result   = " + removeDupsC(head));
+
+    head = new LinkedNode(1);
+    System.out.println("original = " + head);
+    System.out.println("result   = " + removeDupsC(head));
   }
 
 }
