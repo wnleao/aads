@@ -2,6 +2,6 @@ import exercises.chapter02.*;
 
 class Main {
   public static void main(String[] args) {
-     Ex02KthToLast.main(args);
+     Ex03DeleteNode.main(args);
   }
 }

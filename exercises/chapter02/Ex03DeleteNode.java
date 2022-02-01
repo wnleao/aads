@@ -4,8 +4,8 @@ import datastructures.LinkedNode;
 
 public class Ex03DeleteNode {
 
-  private static void deleteNode(LinkedNode node) {
-    if (node == null || node.getNext() == null) {
+  private static void deleteMiddleNode(LinkedNode node, LinkedNode list) {
+    if (node == null || node == list || node.getNext() == null) {
       // We should NOT remove the first nor the last node
       return;
     }
@@ -13,7 +13,7 @@ public class Ex03DeleteNode {
     node.setNext(node.getNext().getNext());    
   }
 
-  private static void deleteMiddleNode(LinkedNode head) {
+  private static void deleteExactMiddleNode(LinkedNode head) {
     if (head == null || head.getNext() == null || head.getNext().getNext() == null) {
       // We should NOT remove the first nor the last node
       return;
@@ -46,30 +46,30 @@ public class Ex03DeleteNode {
   public static void main(String[] args) {
     LinkedNode head = new LinkedNode(1, 2, 3, 4, 5, 6, 7);
     
-    System.out.println(head);
-    deleteNode(head);
-    System.out.println(head);
+    System.out.println("before = " + head);
+    deleteMiddleNode(head, head);
+    System.out.println("after  = " + head);
 
-    System.out.println(head);
-    deleteNode(head.getNext().getNext());
-    System.out.println(head);
+    System.out.println("before = " + head);
+    deleteMiddleNode(head.getNext().getNext(), head);
+    System.out.println("after  = " + head);
 
     head = new LinkedNode(1, 2, 3, 4, 5, 6, 7);
 
     System.out.println(head);
-    deleteMiddleNode(head);
+    deleteExactMiddleNode(head);
     System.out.println(head);
 
     head = new LinkedNode(1, 2);
     
     System.out.println(head);
-    deleteMiddleNode(head);
+    deleteExactMiddleNode(head);
     System.out.println(head);
 
     head = new LinkedNode(1, 2, 3, 4);
     
     System.out.println(head);
-    deleteMiddleNode(head);
+    deleteExactMiddleNode(head);
     System.out.println(head);
 
     head = new LinkedNode(1, 2, 3, 4, 5);
