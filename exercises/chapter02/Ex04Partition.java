@@ -9,25 +9,17 @@ public class Ex04Partition {
       return;
     }
     LinkedNode p1 = head;
-    LinkedNode p2 = null;
     while (p1 != null) {
       // look for node that is greater or equal than given value
-      if (p1.getValue() < value) {
-        p1 = p1.getNext();
-        continue;
-      }    
-      // now let's look for node less than given value and swap
-      p2 = p1.getNext();
-      while (p2 != null) {
-        if (p2.getValue() >= value) {
-          p2 = p2.getNext();
-          continue;
-        }
-        // swap values if current one is less than given value
-        int tmp = p1.getValue();
-        p1.setValue(p2.getValue());
-        p2.setValue(tmp);
-        break;
+      if (p1.getValue() >= value) {   
+        // now let's look for node less than given value and swap
+        LinkedNode p2 = p1.getNext();
+        for (; p2 != null && p2.getValue() >= value; p2 = p2.getNext());
+        if (p2 != null) {
+          int tmp = p1.getValue();
+          p1.setValue(p2.getValue());
+          p2.setValue(tmp);
+        }  
       }
       p1 = p1.getNext();
     }
@@ -40,7 +32,6 @@ public class Ex04Partition {
     LinkedNode head = linkedNode;
     LinkedNode tail = head;
     LinkedNode curr = head;
-    // 1 3 2 6 1
     while (curr != null) {
       LinkedNode next = curr.getNext();
       if (curr.getValue() < value) {
@@ -56,62 +47,38 @@ public class Ex04Partition {
     return head;
   }
 
-  public static void main(String[] args) {
-    LinkedNode head = new LinkedNode(3, 5, 8, 5, 10, 2, 1);
-    System.out.println("before: " + head);
-    partitionA(head, 5);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(1, 1, 1, 1);
-    System.out.println("before: " + head);
-    partitionA(head, 2);
-    System.out.println("after:  " + head);
-
-    System.out.println("before: " + head);
-    partitionA(head, 0);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(1, 2, 1, 2, 1, 2);
-    System.out.println("before: " + head);
-    partitionA(head, 1);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(2, 1);
-    System.out.println("before: " + head);
-    partitionA(head, 1);
-    System.out.println("after:  " + head);
-
-    System.out.println("before: " + head);
-    partitionA(head, 2);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(3, 5, 8, 5, 10, 2, 1);
-    System.out.println("before: " + head);
-    head = partitionB(head, 5);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(1, 1, 1, 1);
-    System.out.println("before: " + head);
-    head = partitionB(head, 2);
-    System.out.println("after:  " + head);
-
-    System.out.println("before: " + head);
-    head = partitionB(head, 0);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(1, 2, 1, 2, 1, 2);
-    System.out.println("before: " + head);
-    head = partitionB(head, 1);
-    System.out.println("after:  " + head);
-
-    head = new LinkedNode(2, 1);
-    System.out.println("before: " + head);
-    head = partitionB(head, 1);
-    System.out.println("after:  " + head);
-
-    System.out.println("before: " + head);
-    head = partitionB(head, 2);
-    System.out.println("after:  " + head);
+  private static LinkedNode partitionC(LinkedNode head, int value) {
+    if (head == null || head.getNext() == null) {
+      return head;
+    }
+    LinkedNode prev = head;
+    LinkedNode curr = null;
+    while ((curr = prev.getNext()) != null) {
+      if (curr.getValue() >= value) {
+        prev = curr;        
+      } else {
+        prev.setNext(curr.getNext());
+        curr.setNext(head);  
+        head = curr;
+      }
+    }
+    return head;
   }
 
+  public static void partition(LinkedNode head, int x) {
+    System.out.println("before = " + head + ", x = " + x);
+    System.out.println("after  = " + partitionC(head, x));
+  }
+
+  public static void main(String[] args) {
+    partition(new LinkedNode(3, 5, 8, 5, 10, 2, 1), 5);
+    partition(new LinkedNode(3, 5, 8, 5, 10, 2, 1), 7);
+    partition(new LinkedNode(5, 2, 8, 5, 10, 2, 1), 5);    
+    partition(new LinkedNode(1, 1, 1), 2);
+    partition(new LinkedNode(1, 1, 1), 0);
+    partition(new LinkedNode(1, 2, 1, 2, 1, 2), 1);
+    partition(new LinkedNode(2, 1, 0), 1);
+    partition(new LinkedNode(2, 1, 0), 2);
+    partition(new LinkedNode(2, 1, 0), 3);
+  }
 }
