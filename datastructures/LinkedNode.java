@@ -10,6 +10,11 @@ public class LinkedNode {
     this.value = value;
   }
 
+  public LinkedNode(int value, LinkedNode next) {
+    this.value = value;
+    this.next = next;
+  }
+
   public LinkedNode(int... values) {
     if (values.length == 0) {
       throw new IllegalArgumentException();
