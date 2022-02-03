@@ -63,6 +63,12 @@ public class LinkedNode {
     }
   }
 
+  public int size() {
+    int i = 0;
+    for(LinkedNode r = this; r != null; i++, r = r.getNext());
+    return i;
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
