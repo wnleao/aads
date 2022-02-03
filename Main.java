@@ -2,6 +2,6 @@ import exercises.chapter02.*;
 
 class Main {
   public static void main(String[] args) {
-     Ex05SumLists.main(args);
+     Ex08LoopDetection.main(args);
   }
 }
