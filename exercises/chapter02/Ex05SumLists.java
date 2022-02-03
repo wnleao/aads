@@ -39,8 +39,8 @@ public class Ex05SumLists {
   }
 
   private static LinkedNode reverse(LinkedNode list) {
-    if (list == null || list.getNext() == null) {
-      return list;
+    if (list == null) {
+      return null;
     }
     LinkedNode head = new LinkedNode(list.getValue(), null);
     LinkedNode curr = list;
