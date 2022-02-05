@@ -1,7 +1,7 @@
-import exercises.chapter02.*;
+import exercises.chapter03.*;
 
 class Main {
   public static void main(String[] args) {
-     Ex07Intersection.main(args);
+     Ex02StackMin.main(args);
   }
 }

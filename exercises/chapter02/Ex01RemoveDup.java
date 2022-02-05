@@ -1,6 +1,7 @@
 package exercises.chapter02;
 
 import datastructures.LinkedList;
+import datastructures.Node;
 import datastructures.LinkedNode;
 import java.util.Set;
 import java.util.HashSet;
@@ -64,7 +65,7 @@ public class Ex01RemoveDup {
     return result;
   }
 
-  public static void removeDupsD(LinkedList list) {
+  public static void removeDupsD(LinkedList<Integer> list) {
     if (list.isEmpty()) {
       return;
     }
@@ -77,25 +78,25 @@ public class Ex01RemoveDup {
     } while(list.peek() != firstValue);    
   }
 
-  public static LinkedList removeDupsE(LinkedList list) {
-    LinkedList result = new LinkedList() {
+  public static LinkedList<Integer> removeDupsE(LinkedList<Integer> list) {
+    LinkedList<Integer> result = new LinkedList<>() {
       @Override
-      public void add(int value) {
+      public void add(Integer value) {
         if (head == null) {
-          head = new Node(value, null);
+          head = new Node<>(value, null);
           return;
         }
         if (head.getValue() == value) {
           return;
         }
-        Node node = head;
+        Node<Integer> node = head;
         while (node.getNext() != null) {
           if (node.getNext().getValue() == value) {
             return;
           }
           node = node.getNext();
         }
-        node.setNext(new Node(value, null));
+        node.setNext(new Node<>(value, null));
       }
     };
     while (!list.isEmpty()) {
@@ -108,8 +109,8 @@ public class Ex01RemoveDup {
     return new LinkedNode(1, 1, 2, 2, 2, 1, 1);
   }
 
-  private static LinkedList createLinkedList() {
-    LinkedList head = new LinkedList();
+  private static LinkedList<Integer> createLinkedList() {
+    LinkedList<Integer> head = new LinkedList<>();
     head.add(1, 1, 2, 2, 2, 1, 1);
     return head;
   }
