@@ -15,6 +15,12 @@ public class Stack<T> {
     size++;
   }
 
+  public void push(T... values) {
+    for(T value : values) {
+      push(value);
+    }
+  }
+
   public T peek() {
     throwExceptionIfEmpty();
     return head.getValue();
