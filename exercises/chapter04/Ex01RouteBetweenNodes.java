@@ -1,5 +1,6 @@
 package exercises.chapter04;
 
+import exercises.Exercise;
 import datastructures.graph.*;
 import java.util.List;
 import java.util.LinkedList;
@@ -7,7 +8,16 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
 
-public class Ex01RouteBetweenNodes {
+/**
+ * 4.1 Route Between Nodes: Given a directed graph, 
+ * design an algorithm to find out whether there is a
+ * route between two nodes.
+ **/
+public class Ex01RouteBetweenNodes extends Exercise {
+
+  public Ex01RouteBetweenNodes(String[] args) {
+    super(args);
+  } 
 
   /**
    * This uses BFS to found out whether 
@@ -28,9 +38,7 @@ public class Ex01RouteBetweenNodes {
     return false; 
   }
 
-  public static void main(String[] args) {
-    System.out.println("Chapter04. Ex01RouteBetweenNodes");
-    
+  public void compute(String[] args) {
     Node n1 = new Node("1");
     Node n2 = new Node("2");
     Node n3 = new Node("3");
