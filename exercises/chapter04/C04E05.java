@@ -14,54 +14,21 @@ public class C04E05 extends Exercise {
     super(args);
   } 
 
-  public static class BST {
-    public int value;
-    public boolean isBST;
-  }
-
-  public boolean isBSTA(Node<Integer> node) {
-    BST bst = checkBST(node, true);
-    return bst == null || bst.isBST;
-  }
-
-  private BST checkBST(Node<Integer> node, boolean min) {
-    if (node == null) { return null; }
-    BST l = checkBST(node.left, false);
-    if (l != null && !l.isBST) { return l; }
-    BST r = checkBST(node.right, true);
-    if (r != null && !r.isBST) { return r; }
-    return checkBST(node.value, l, r, min);
-  }
-
-  private BST checkBST(Integer value, BST left, BST right, boolean min) {
-    BST bst = new BST();
-    bst.isBST = (left == null || left.value <= value) && (right == null || right.value > value);
-    bst.value = value;
-    if (min) {
-      bst.value = left != null ? Math.min(bst.value, left.value) : bst.value;
-      bst.value = right != null ? Math.min(bst.value, right.value) : bst.value;
-    } else {
-      bst.value = left != null ? Math.max(bst.value, left.value) : bst.value;
-      bst.value = right != null ? Math.max(bst.value, right.value) : bst.value;
-    }
-    return bst; 
-  }
-
-  public boolean isBSTB(Node<Integer> node) {
+  public boolean isBST(Node<Integer> node) {
     if (node == null) { return true; }
-    return checkBSTB(node, true) != null;
+    return checkBST(node, true) != null;
   }
 
-  public Integer checkBSTB(Node<Integer> node, boolean min) {
+  public Integer checkBST(Node<Integer> node, boolean min) {
     Integer lv = null;
     if (node.left != null) {
-      lv = checkBSTB(node.left, false);
+      lv = checkBST(node.left, false);
       if (lv == null) { return null; }
     }
 
     Integer rv = null;
     if (node.right != null) {
-      rv = checkBSTB(node.right, true);
+      rv = checkBST(node.right, true);
       if (rv == null) { return null; }
     }
     
@@ -80,11 +47,29 @@ public class C04E05 extends Exercise {
     return value;
   }
 
+  public static class BST {
+    
+    private static int tmp;
+    
+    public static boolean validate(Node<Integer> node) {
+      tmp = Integer.MIN_VALUE;
+      return validateR(node);
+    }
+
+    private static boolean validateR(Node<Integer> node) {
+      if (node == null) { return true; }    
+      if (!validateR(node.left)) { return false; }
+      if (node.value < tmp) { return false; }
+      tmp = node.value;
+      return validateR(node.right);
+    }
+
+  }
 
   public void dumpBST(Node<Integer> node) {
     node.dump();
-    System.out.println("isBSTA? " + isBSTA(node));
-    System.out.println("isBSTB? " + isBSTB(node));
+    System.out.println("isBST? " + isBST(node));
+    System.out.println("isBST? " + BST.validate(node));
   }
 
   public void compute(String[] args) {
@@ -104,7 +89,7 @@ public class C04E05 extends Exercise {
     dumpBST(n1);
 
     n1.left.left = new Node<>(25);
-    n1.left.right = new Node<>(2000);
+    n1.left.right = new Node<>(101);
     dumpBST(n1);
 
     n1.left.right = new Node<>(75);
