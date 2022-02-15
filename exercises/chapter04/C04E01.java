@@ -13,9 +13,9 @@ import java.util.Arrays;
  * design an algorithm to find out whether there is a
  * route between two nodes.
  **/
-public class Ex01RouteBetweenNodes extends Exercise {
+public class C04E01 extends Exercise {
 
-  public Ex01RouteBetweenNodes(String[] args) {
+  public C04E01(String[] args) {
     super(args);
   } 
 

@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
  * unique integer elements, write an algorithm to create a binary 
  * search tree with minimal height.
  **/
-public class Ex02MinimalTree extends Exercise {
+public class C04E02 extends Exercise {
 
-  public Ex02MinimalTree(String[] args) {
+  public C04E02(String[] args) {
     super(args);
   } 
 

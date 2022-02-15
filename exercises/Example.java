@@ -1,5 +1,7 @@
 package exercises;
 
+import exercises.Exercise;
+
 /**
   * X.Y name: description.
   **/

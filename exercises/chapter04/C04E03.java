@@ -21,7 +21,7 @@ public class C04E03 extends Exercise {
   }
 
   public void compute(String[] args) {
-    Ex02MinimalTree mt = new Ex02MinimalTree(null);
+    C04E02 mt = new C04E02(null);
     Node<Integer> root = mt.toTree(new int[]{ 1,2,3,4,5,6,7,8,9,10,11 });
     if (root != null) {
       root.dump();
