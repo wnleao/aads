@@ -36,7 +36,7 @@ public class Ex02MinimalTree extends Exercise {
             .mapToObj(Integer::toString)
             .collect(Collectors.joining(", ", "[", "]")));
     System.out.println("Tree  = ");
-    Node root = toTree(values);
+    Node<Integer> root = toTree(values);
     if (root != null) {
       root.dump();
     } else {

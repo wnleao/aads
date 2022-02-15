@@ -6,9 +6,9 @@ public class Node<T> {
 
   public final T value;
 
-  public Node left;
+  public Node<T> left;
 
-  public Node right;
+  public Node<T> right;
 
   public Node(T value) {
     Objects.requireNonNull(value);
