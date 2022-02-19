@@ -3,23 +3,30 @@ package datastructures.graph;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Node {
+public class Node<T> {
 
-  public final String name;
+  public final T value;
 
-  public Node(String name) {
-    this.name = name;
+  public List<Node<T>> in = new ArrayList<>();
+
+  public List<Node<T>> out = new ArrayList<>();
+
+  public Node(T value) {
+    this.value = value;
   }
 
-  public List<Node> nodes = new ArrayList<>();
+  public static <T> Node<T> of(T value) {
+    return new Node<>(value);
+  }
 
-  public void add(Node node) {
-    nodes.add(node);
+  public void add(Node<T> n) {
+    out.add(n);
+    n.in.add(this);
   }
 
   @Override
   public String toString() {
-    return name;
+    return value != null ? value.toString() : null;
   }
 
 }

@@ -23,29 +23,29 @@ public class C04E01 extends Exercise {
    * This uses BFS to found out whether 
    * there is a route between the given nodes.
    **/
-  public static boolean isRoute(Node a, Node b) {
-    Set<Node> visited = new HashSet<>();
-    LinkedList<Node> queue = new LinkedList<>();
+  public static <T> boolean isRoute(Node<T> a, Node<T> b) {
+    Set<Node<T>> visited = new HashSet<>();
+    LinkedList<Node<T>> queue = new LinkedList<>();
     queue.add(a);
     while (!queue.isEmpty()) {
-      Node c = queue.remove();
+      Node<T> c = queue.remove();
       if (c == b) { return true; }   
       if (!visited.contains(c)) {
         visited.add(c);        
-        c.nodes.forEach(queue::add);
+        c.out.forEach(queue::add);
       }
     }
     return false; 
   }
 
   public void compute(String[] args) {
-    Node n1 = new Node("1");
-    Node n2 = new Node("2");
-    Node n3 = new Node("3");
-    Node n4 = new Node("4");
-    Node n5 = new Node("5");
-    Node n6 = new Node("6");
-    Node n7 = new Node("7");
+    Node<String> n1 = Node.of("1");
+    Node<String> n2 = Node.of("2");
+    Node<String> n3 = Node.of("3");
+    Node<String> n4 = Node.of("4");
+    Node<String> n5 = Node.of("5");
+    Node<String> n6 = Node.of("6");
+    Node<String> n7 = Node.of("7");
 
     // n1 -> n2 -> n4 -> n6
     //  \.    '\        '/
@@ -62,10 +62,10 @@ public class C04E01 extends Exercise {
     n5.add(n2);
     n7.add(n5);
 
-    List<Node> nodes = Arrays.asList(n1, n2, n3, n4, n5, n6, n7);
+    List<Node<String>> nodes = Arrays.asList(n1, n2, n3, n4, n5, n6, n7);
 
-    for (Node a : nodes) {
-      for (Node b : nodes) {
+    for (Node<String> a : nodes) {
+      for (Node<String> b : nodes) {
         System.out.println(String.format("isRoute(%s, %s) ? %s", a, b, isRoute(a, b)));
       }
     }
