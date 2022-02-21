@@ -2,6 +2,8 @@ package exercises.chapter04;
 
 import exercises.Exercise;
 import datastructures.tree.Node;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
   * 4.8 First Common Ancestor
@@ -13,10 +15,14 @@ public class C04E08 extends Exercise {
   } 
 
   public <T> Node<T> commonAncestor(Node<T> a, Node<T> b) {
-    if (a == b) return a;
-    if (a.parent == null) return a;
-    if (b.parent == null) return b;
-    return commonAncestor(a.parent, b.parent);
+    if (a == b) return a.parent;
+    Set<Node<T>> parents = new HashSet<>();    
+    for (Node<T> p = a.parent; p != null; p = p.parent) {
+      parents.add(p);
+    }
+    Node<T> ca = b.parent;
+    for (; ca != null && !parents.contains(ca); ca = ca.parent);
+    return ca;
   }
 
   private void dumpCommonAncestor(Node<String> a, Node<String> b, String expected) {
@@ -51,6 +57,7 @@ public class C04E08 extends Exercise {
     dumpCommonAncestor(n1.left.left.left, n1.right.left.right, "A");
     dumpCommonAncestor(n1.left.left.left, n1.left.left.right, "D");
     dumpCommonAncestor(n1.right.left.left, n1.right.left.right, "F");
+    dumpCommonAncestor(n1.left.left.left, n1.left.left, "B");
   }
 
 }
