@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class Node<T> {
 
-  public final T value;
+  public T value;
 
   public Node<T> parent;
 
