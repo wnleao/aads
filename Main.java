@@ -1,7 +1,7 @@
-import exercises.chapter04.*;
+import exercises.chapter05.*;
 
 class Main {
   public static void main(String[] args) {
-     new C04E12(args).run();
+     new C05E01(args).run();
   }
 }
